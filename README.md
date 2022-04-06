@@ -44,3 +44,7 @@ Here are some issues that are there and might be fixed in the future, but aren't
 The tags are listed first instead of the game's name
 Empty spaces are replaced by %20 in the tags' name
 
+
+
+
+Uses pandas with New BSD License
