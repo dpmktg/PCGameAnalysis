@@ -1,7 +1,7 @@
 # PCGameAnalysis
 Allows the user to get data from Steam regarding games sold on that platform
 
-#PLEASE NOTE THAT THE WISHLIST AND REVENUE NUMBERS ARE ESTIMATIONS
+# PLEASE NOTE THAT THE WISHLIST AND REVENUE NUMBERS ARE ESTIMATIONS
 
 
 
@@ -35,7 +35,7 @@ How many players are playing that game when you started this script
 
 ```
 
-##Known issues
+## Known issues
 
 Here are some issues that are there and might be fixed in the future, but aren't that important
 
