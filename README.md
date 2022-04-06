@@ -35,6 +35,8 @@ How many players are playing that game when you started this script
 
 ```
 
+When the script is done retrieving datas about a game, a .xlsx made or updated containing those data
+
 ## Known issues
 
 Here are some issues that are there and might be fixed in the future, but aren't that important
