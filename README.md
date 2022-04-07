@@ -1,6 +1,8 @@
 # PCGameAnalysis
 Allows the user to get data from Steam regarding games sold on that platform
 
+Uses pandas with New BSD License
+
 # PLEASE NOTE THAT THE WISHLIST AND REVENUE NUMBERS ARE ESTIMATIONS
 
 
@@ -47,4 +49,4 @@ Empty spaces are replaced by %20 in the tags' name
 
 
 
-Uses pandas with New BSD License
+
