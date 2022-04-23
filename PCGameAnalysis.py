@@ -26,6 +26,7 @@ if choice == 1:
     name = input("Please enter the name of the game you'd like to search\n")
     url = requests.get("https://store.steampowered.com/search/?term="+name+"&category1=998") #default request is https://store.steampowered.com/search/?term="+name+"&category1=998 in case you want to revert to default settings
     htmltext = url.text
+    
 
     pattern = '''data-ds-appid="(.[0-9]*)"+ '''
 
@@ -146,8 +147,8 @@ if choice == 1:
                price = htmltext3.split('"initial_formatted":"$')[1].split('"')[0]
             
             
-            cleanPrice = price.replace(',','.')
-            grossRevenue = int(reviews)*float(cleanPrice)*45
+            cleanprice = price.replace(',','.')
+            grossRevenue = int(reviews)*float(cleanprice)*45
             netRevenue = int(grossRevenue)*0.8*0.92*0.8*0.8*0.7
             print('Gross Revenues:',str(round(grossRevenue,2))+"$",'Net Revenues:',str(round(netRevenue,2))+"$")
             print(*tags)
@@ -158,12 +159,12 @@ if choice == 1:
             else:
                price = htmltext3.split('"initial_formatted":"$')[1].split('"')[0]
             
-            cleanPrice = price.replace(',','.')
+            cleanprice = price.replace(',','.')
             url4 = requests.get("https://store.steampowered.com/app/"+appid)
 
             htmltext4 = url4.text
             newReviews = htmltext4.split('meta itemprop="reviewCount" content="')[1].split('"')[0]
-            grossRevenue = int(newReviews)*float(cleanPrice)*45
+            grossRevenue = int(newReviews)*float(cleanprice)*45
             netRevenue = int(grossRevenue)*0.8*0.92*0.8*0.8*0.7
             print('Gross Revenues:',str(round(grossRevenue,2))+"$",'Net Revenues:',str(round(netRevenue,2))+"$")
             print(*tags)
@@ -232,13 +233,13 @@ elif choice == 2:
     name = htmltext.split(' <h2 class="pageheader">')[1].split('<')[0]
     pattern = '''data-ds-appid="(.[0-9]*)"+ '''
     
+    price = 0
     regex = re.findall(pattern, htmltext)
 
     print("nb result :"+ str(len(regex)))
     for appid in regex:
 
         j = 0
-
         try :
             url2 = requests.get("https://steamcommunity.com/games/"+appid)
             htmltext2 = url2.text
@@ -254,17 +255,18 @@ elif choice == 2:
         
             print("Followers",cleanMembers,"Low Wishlist Estimation", cleanMembers*5, "Average Wishlist Estimation", int(cleanMembers*9.6), "High Wishlist Estimation", cleanMembers*14 )
         
+        
+
+            url3 = requests.get("https://store.steampowered.com/api/appdetails?appids="+appid+"&cc=us&l=en")
+        
+        
+
+            htmltext3 = url3.text
+
+            releaseDate = htmltext3.split('date":"')[1].split('"')[0]
         except IndexError :
             cleanMembers = 0
-
-
-        url3 = requests.get("https://store.steampowered.com/api/appdetails?appids="+appid+"&cc=us&l=en")
-        
-        
-
-        htmltext3 = url3.text
-
-        releaseDate = htmltext3.split('date":"')[1].split('"')[0]
+            
         try:
 
             daysSinceRelease = d2 - datetime.strptime(releaseDate, f)
@@ -349,8 +351,8 @@ elif choice == 2:
                price = htmltext3.split('"initial_formatted":"$')[1].split('"')[0]
             
             
-            cleanPrice = price.replace(',','.')
-            grossRevenue = int(reviews)*float(cleanPrice)*45
+            cleanprice = price.replace(',','.')
+            grossRevenue = int(reviews)*float(cleanprice)*45
             netRevenue = int(grossRevenue)*0.8*0.92*0.8*0.8*0.7
             print('Gross Revenues:',str(round(grossRevenue,2))+"$",'Net Revenues:',str(round(netRevenue,2))+"$")
             print(*tags)
@@ -361,12 +363,12 @@ elif choice == 2:
             else:
                price = htmltext3.split('"initial_formatted":"$')[1].split('"')[0]
             
-            cleanPrice = price.replace(',','.')
+            cleanprice = price.replace(',','.')
             url4 = requests.get("https://store.steampowered.com/app/"+appid)
 
             htmltext4 = url4.text
             newReviews = htmltext4.split('meta itemprop="reviewCount" content="')[1].split('"')[0]
-            grossRevenue = int(newReviews)*float(cleanPrice)*45
+            grossRevenue = int(newReviews)*float(cleanprice)*45
             netRevenue = int(grossRevenue)*0.8*0.92*0.8*0.8*0.7
             print('Gross Revenues:',str(round(grossRevenue,2))+"$",'Net Revenues:',str(round(netRevenue,2))+"$")
             print(*tags)
@@ -423,7 +425,7 @@ elif choice == 2:
         
 
 
-        d.to_excel(name+d1+" similar.xlsx")
+        d.to_excel(name+d1+" research.xlsx")
             
 
 
